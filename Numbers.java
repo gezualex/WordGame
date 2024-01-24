@@ -29,9 +29,4 @@ public class Numbers {
         }
     }
 
-    public static int generateRandomNumber(int i, int j) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'generateRandomNumber'");
-    }
-
 }
