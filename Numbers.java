@@ -1,26 +1,26 @@
 import java.util.Random;
 
 public class Numbers {
-    private int randomNum;
+    private static int randomNumber;
 
     public int getRandomNum() {
-        return randomNum;
+        return getRandomNum();
     }
 
     public void setRandomNum(int randomNum) {
-        this.randomNum = randomNum;
+        Numbers.randomNumber = randomNum;
     }
 
-    public void generateNumber() {
+    public static int generateNumber() {
         Random rand = new Random();
-        randomNum = rand.nextInt(101);
+        return randomNumber = rand.nextInt(101);
     }
 
     public boolean compareNumber(int guess) {
-        if (guess == randomNum) {
+        if (guess == randomNumber) {
             System.out.println("Congratulations, you guessed the number!");
             return true;
-        } else if (guess > randomNum) {
+        } else if (guess > randomNumber) {
             System.out.println("I'm sorry. That guess was too high.");
             return false;
         } else {
@@ -28,4 +28,10 @@ public class Numbers {
             return false;
         }
     }
+
+    public static int generateRandomNumber(int i, int j) {
+
+        throw new UnsupportedOperationException("Unimplemented method 'generateRandomNumber'");
+    }
+
 }
