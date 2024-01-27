@@ -18,4 +18,9 @@ public class Players extends Person {
     public String toString() {
         return "Player: " + getFirstName() + ", Money: " + money;
     }
+
+    public Players makeGuess() {
+
+        throw new UnsupportedOperationException("Unimplemented method 'makeGuess'");
+    }
 }
