@@ -1,15 +1,25 @@
 
-public class Host extends Person {
-    public Host(String name) {
-        super(name);
+class Hosts {
+    private String name;
+    private int numToGuess;
+
+    public Hosts(String name, int numToGuess) {
+        this.name = name;
+        this.numToGuess = numToGuess;
     }
 
-    public int randomizeNum() {
-        return Numbers.generateRandomNumber(0, 0);
+    public void randomizeNum() {
+        Random random = new Random();
+        numToGuess = random.nextInt(10) + 1;
     }
 
-    public void generateRandomNumber() {
-
-        throw new UnsupportedOperationException("Unimplemented method 'generateRandomNumber'");
+    public boolean checkGuess(int guess) {
+        if (guess == numToGuess) {
+            System.out.println("You won!");
+            return true;
+        } else {
+            System.out.println("You lost.");
+            return false;
+        }
     }
 }
