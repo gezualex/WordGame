@@ -3,9 +3,13 @@ class Hosts {
     private String name;
     private int numToGuess;
 
-    public Hosts(String name, int numToGuess) {
+    public Hosts(String name, String string) {
         this.name = name;
-        this.numToGuess = numToGuess;
+        this.numToGuess = string;
+    }
+
+    public Hosts(String name2, String string) {
+        // TODO Auto-generated constructor stub
     }
 
     public void randomizeNum() {

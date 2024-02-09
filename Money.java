@@ -1,7 +1,3 @@
-interface Award {
-    int displayWinnings(Players player, boolean correctGuess);
-}
-
 class Money implements Award {
     private int winningAmount = 100;
     private int losingAmount = 50;
@@ -15,4 +11,5 @@ class Money implements Award {
             return -losingAmount;
         }
     }
+
 }

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Physical implements Award {
     private String[] physicalPrizes = { "Television", "Laptop", "Smartphone", "Tablet", "Game Console" };
 
