@@ -1,20 +1,11 @@
 public class Turn {
+    private String phrase;
 
-    public Turn(int number) {
+    public Turn(String phrase) {
+        this.phrase = phrase;
     }
 
-    public void takeTurn() {
-        Money money = new Money();
-        int randomNumber = generateRandomNumber();
-
-        if (randomNumber < 5) {
-            money.winMoney();
-        } else {
-            money.winPrize();
-        }
-    }
-
-    private int generateRandomNumber() {
-        return (int) (Math.random() * 10) + 1;
+    public boolean isCorrectGuess(char letter) {
+        return phrase.contains(String.valueOf(letter));
     }
 }
