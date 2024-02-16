@@ -3,40 +3,36 @@ import java.util.Scanner;
 public class GamePlay {
     private Phrases phrases;
 
-    public GamePlay() {
-        this.phrases = new Phrases();
+    public GamePlay(Phrases phrases) {
+        this.phrases = phrases;
     }
 
-    public void startGame() {
+    public void playGame() {
         Scanner scanner = new Scanner(System.in);
+        boolean guessed = false;
 
         System.out.println("Welcome to the Word Guessing Game!");
 
-        while (!phrases.isGuessed()) {
-            System.out.println("Phrase: " + phrases.getHiddenPhrase());
+        while (!guessed) {
             System.out.print("Enter a letter: ");
-
-            String input = scanner.next().toLowerCase();
+            char letter = scanner.next().toLowerCase().charAt(0);
 
             try {
-                if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
-                    throw new IllegalArgumentException("Please enter a single letter.");
-                }
-
-                Phrases.findLetters(input.charAt(0));
+                guessed = phrases.findLetters(letter);
             } catch (MultipleLettersException e) {
-                System.out.println("Error: Please enter only one letter.");
+                System.out.println("Error: " + e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
 
-        System.out.println("Congratulations! You have guessed the phrase: " + phrases.getHiddenPhrase());
+        System.out.println("Congratulations! You guessed the word.");
         scanner.close();
     }
 
     public static void main(String[] args) {
-        GamePlay game = new GamePlay();
-        game.startGame();
+        Phrases phrases = new Phrases("hello");
+        GamePlay game = new GamePlay(phrases);
+        game.playGame();
     }
 }
