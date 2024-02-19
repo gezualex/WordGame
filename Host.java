@@ -1,12 +1,12 @@
 
-public class host {
+public class Host {
+    private String gamePhrase;
 
-<<<<<<< Updated upstream
+    public String getGamePhrase() {
+        return gamePhrase;
+    }
+
     public void setGamePhrase(String phrase) {
         gamePhrase = phrase;
     }
-
 }
-=======
-}
->>>>>>> Stashed changes
