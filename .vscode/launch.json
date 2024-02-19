@@ -2,6 +2,7 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< Updated upstream
             "name": "PlayerManagementSystem",
             "request": "launch",
             "mainClass": "PlayerManagementSystem",
@@ -9,6 +10,8 @@
         },
         {
             "type": "java",
+=======
+>>>>>>> Stashed changes
             "name": "GUI",
             "request": "launch",
             "mainClass": "GUI",
