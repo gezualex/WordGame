@@ -6,8 +6,8 @@ class Players {
         this.name = name;
     }
 
-    public Players(String name, String lastName) {
-        this.name = name + " " + lastName;
+    public Players() {
+        this.name = name + " " + getName();
     }
 
     public void setMoney(int money) {
@@ -24,5 +24,10 @@ class Players {
 
     public String getName() {
         return name;
+    }
+
+    public static void add(Players newPlayer) {
+
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
     }
 }

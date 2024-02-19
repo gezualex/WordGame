@@ -8,4 +8,5 @@ public class Host {
     public void setGamePhrase(String phrase) {
         gamePhrase = phrase;
     }
+
 }
