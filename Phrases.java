@@ -1,25 +1,40 @@
 public class Phrases {
-    private String phrase;
+    public static String gamePhrase;
+    private static String playingPhrase;
 
     public Phrases(String phrase) {
-        this.phrase = phrase.toLowerCase();
+        gamePhrase = phrase;
+        playingPhrase = gamePhrase.replaceAll("[a-zA-Z]", "_");
     }
 
-    public boolean findLetters(char letter) throws MultipleLettersException {
-        if (letter < 'a' || letter > 'z') {
-            throw new IllegalArgumentException("Please enter a letter from a to z.");
+    public String getPlayingPhrase() {
+        return playingPhrase;
+    }
+
+    public static void findLetters(String letter) throws MultipleLettersException {
+        if (letter.length() != 1) {
+            throw new MultipleLettersException();
         }
 
-        if (phrase.contains(String.valueOf(letter))) {
-            if (phrase.indexOf(letter) == phrase.lastIndexOf(letter)) {
-                System.out.println("Letter found: " + letter);
-                return true;
-            } else {
-                throw new MultipleLettersException("Multiple occurrences of the letter " + letter + " found.");
+        char guess = letter.charAt(0);
+        char[] gamePhraseArray = gamePhrase.toCharArray();
+        char[] playingPhraseArray = playingPhrase.toCharArray();
+
+        boolean found = false;
+        for (int i = 0; i < gamePhraseArray.length; i++) {
+            if (Character.toLowerCase(gamePhraseArray[i]) == Character.toLowerCase(guess)) {
+                playingPhraseArray[i] = gamePhraseArray[i];
+                found = true;
             }
-        } else {
-            System.out.println("Letter not found: " + letter);
-            return false;
+        }
+
+        playingPhrase = String.valueOf(playingPhraseArray);
+
+        if (!playingPhrase.contains("_")) {
+            System.out.println("Congratulations! You've guessed the phrase: " + gamePhrase);
+            System.out.println("You win a prize!");
+        } else if (!found) {
+            System.out.println("Sorry, the letter '" + guess + "' is not in the phrase.");
         }
     }
 }

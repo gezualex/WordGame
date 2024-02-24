@@ -1,38 +1,29 @@
 import java.util.Scanner;
 
 public class GamePlay {
-    private Phrases phrases;
-
-    public GamePlay(Phrases phrases) {
-        this.phrases = phrases;
-    }
-
-    public void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        boolean guessed = false;
-
-        System.out.println("Welcome to the Word Guessing Game!");
-
-        while (!guessed) {
-            System.out.print("Enter a letter: ");
-            char letter = scanner.next().toLowerCase().charAt(0);
-
-            try {
-                guessed = phrases.findLetters(letter);
-            } catch (MultipleLettersException e) {
-                System.out.println("Error: " + e.getMessage());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-        }
-
-        System.out.println("Congratulations! You guessed the word.");
-        scanner.close();
-    }
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Phrases phrases = new Phrases("hello");
-        GamePlay game = new GamePlay(phrases);
-        game.playGame();
+        System.out.println("Welcome to the Game!");
+
+        boolean continueGame = true;
+        while (continueGame) {
+            System.out.print("Enter a letter to guess: ");
+            String guess = scanner.nextLine();
+
+            try {
+                Phrases.findLetters(guess);
+            } catch (MultipleLettersException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid letter.");
+            }
+
+            System.out.print("Continue playing? (Y/N): ");
+            String playChoice = scanner.nextLine();
+            if (!playChoice.equalsIgnoreCase("Y")) {
+                continueGame = false;
+            }
+        }
     }
 }

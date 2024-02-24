@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Hosts",
+            "request": "launch",
+            "mainClass": "Hosts",
+            "projectName": "WordGame_8e9420f4"
+        },
+        {
+            "type": "java",
+            "name": "Phrases",
+            "request": "launch",
+            "mainClass": "Phrases",
+            "projectName": "WordGame_8e9420f4"
+        },
+        {
+            "type": "java",
             "name": "GamePlay",
             "request": "launch",
             "mainClass": "GamePlay",
