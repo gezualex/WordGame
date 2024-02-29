@@ -1,5 +1,5 @@
 public class MultipleLettersException extends Exception {
-    public MultipleLettersException(String string) {
+    public MultipleLettersException() {
     }
 
     @Override
