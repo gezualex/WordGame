@@ -7,7 +7,7 @@ public class Turn<Hosts> {
         this.amountForIncorrectGuess = amountForIncorrectGuess;
     }
 
-    public boolean takeTurn(Player player, Host host) {
+    public boolean takeTurn(Players player, Host host) {
         int numToGuess = Numbers.generateRandomNumber(0, 100);
         System.out.println(host.getFirstName() + " prompts " + player.getFirstName()
                 + " to enter a guess for the random number between 0 and 100.");

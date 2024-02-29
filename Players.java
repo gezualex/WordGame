@@ -19,7 +19,7 @@ public class Players extends Person {
         return "Player: " + getFirstName() + ", Money: " + money;
     }
 
-    public Players makeGuess() {
+    public int makeGuess() {
         throw new UnsupportedOperationException("Unimplemented method 'makeGuess'");
     }
 

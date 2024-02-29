@@ -1,33 +1,28 @@
 import java.util.Scanner;
 
 public class GamePlay {
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Host host = new Host("Mike");
-        Players player = new Players(null);
+        System.out.println("Welcome to the Game!");
 
-        Turn turn = new Turn(0, 0);
+        boolean continueGame = true;
+        while (continueGame) {
+            System.out.print("Enter a letter to guess: ");
+            String guess = scanner.nextLine();
 
-        boolean keepPlaying = true;
-
-        while (keepPlaying) {
-            host.generateRandomNumber();
-
-            boolean guessedCorrectly = false;
-            while (!guessedCorrectly) {
-                Players guess = player.makeGuess();
-                guessedCorrectly = turn.takeTurn(guess, ((Object) host).getNumber());
-                if (guessedCorrectly) {
-                    System.out.println("Congratulations! You guessed the number.");
-                } else {
-                    System.out.println("Try again!");
-                }
+            try {
+                Phrases.findLetters(guess);
+            } catch (MultipleLettersException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid letter.");
             }
 
-            System.out.println("Do you want to keep playing? (yes/no)");
-            String choice = scanner.next();
-            if (choice.equalsIgnoreCase("no")) {
-                keepPlaying = false;
+            System.out.print("Continue playing? (Y/N): ");
+            String playChoice = scanner.nextLine();
+            if (!playChoice.equalsIgnoreCase("Y")) {
+                continueGame = false;
             }
         }
     }
