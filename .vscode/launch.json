@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GameMenuGUI",
+            "request": "launch",
+            "mainClass": "GameMenuGUI",
+            "projectName": "WordGame_8e9420f4"
+        },
+        {
+            "type": "java",
             "name": "GamePlay",
             "request": "launch",
             "mainClass": "GamePlay",
