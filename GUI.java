@@ -2,75 +2,79 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements ActionListener {
 
-    private JLabel prizeLabel;
-    private JLabel animationLabel;
-    private JMenu attributionMenu;
-    private JMenuItem imageAttributionItem;
-    private JMenuItem soundAttributionItem;
+  private JButton imageButton, soundButton, animationButton;
+  private JMenuItem imageAttribution, soundAttribution;
 
-    public GUI() {
-        setTitle("Prize Game");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  public GUI() {
+    setTitle("Game with Image, Sound, and Animation");
+    setSize(800, 600);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu aboutMenu = new JMenu("About");
-        attributionMenu = new JMenu("Attribution");
-        imageAttributionItem = new JMenuItem("Image Attribution");
-        soundAttributionItem = new JMenuItem("Sound Attribution");
-        attributionMenu.add(imageAttributionItem);
-        attributionMenu.add(soundAttributionItem);
-        aboutMenu.add(attributionMenu);
-        menuBar.add(aboutMenu);
-        setJMenuBar(menuBar);
+    JMenuBar menuBar = new JMenuBar();
+    JMenu aboutMenu = new JMenu("About");
 
-        prizeLabel = new JLabel();
-        prizeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(prizeLabel, BorderLayout.CENTER);
+    imageAttribution = new JMenuItem("Image Attribution");
+    soundAttribution = new JMenuItem("Sound Attribution");
 
-        animationLabel = new JLabel();
-        animationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(animationLabel, BorderLayout.NORTH);
-        ImageIcon prizeImage = new ImageIcon("prize_image.jpg");
-        ImageIcon animationImage = new ImageIcon("animation_image.jpg");
-        Image image = prizeImage.getImage();
-        Image newPrizeImage = image.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-        prizeLabel.setIcon(new ImageIcon(newPrizeImage));
-        Timer timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Random random = new Random();
-                int rand = random.nextInt(10);
-                if (rand % 2 == 0) {
-                    animationLabel.setIcon(animationImage);
-                    animationLabel.setVisible(true);
-                } else {
-                    animationLabel.setVisible(false);
-                }
-            }
-        });
-        timer.start();
-        imageAttributionItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Image attributions: Pixabay, Unsplash, etc.");
-            }
-        });
+    aboutMenu.add(imageAttribution);
+    aboutMenu.add(soundAttribution);
+    menuBar.add(aboutMenu);
 
-        soundAttributionItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Sound attributions: Freesound, SoundBible, etc.");
-            }
-        });
+    setJMenuBar(menuBar);
+
+    setLayout(new FlowLayout());
+
+    imageButton = new JButton("Show Prize Image");
+    soundButton = new JButton("Play Sound");
+    animationButton = new JButton("Play Animation");
+
+    add(imageButton);
+    add(soundButton);
+    add(animationButton);
+
+    imageButton.addActionListener(this);
+    soundButton.addActionListener(this);
+    animationButton.addActionListener(this);
+
+    setVisible(true);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == imageButton) {
+      ImageIcon icon = new ImageIcon("C:\\Users\\GEZU\\Downloads\\walia (2).jpg");
+      JLabel label = new JLabel();
+      label.setIcon(icon);
+      add(label);
+      revalidate();
+      repaint();
+    } else if (e.getSource() == soundButton) {
+      playSound("C:\\Users\\GEZU\\Downloads\\sunflower-street-drumloop-85bpm-163900.mp3");
+    } else if (e.getSource() == animationButton) {
+      playAnimation();
     }
+  }
 
-    public static void main(String[] args) {
-        GUI gui = new GUI();
-        gui.setVisible(true);
+  private void playSound(String soundFile) {
+    try {
+      Clip clip = AudioSystem.getClip();
+      clip.open(AudioSystem.getAudioInputStream(new File(soundFile)));
+      clip.start();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
+
+  private void playAnimation() {
+  }
+
+  public static void main(String[] args) {
+    new GUI();
+  }
 }
